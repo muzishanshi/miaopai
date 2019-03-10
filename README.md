@@ -37,6 +37,22 @@ http://m.renrendian.com/buyer/home?vid=14420124
  - 支持检查更新
  
  - 支持修改自定义logo、favicon、自定义二维码、打赏二维码、底部自定义信息等
+ 
+# 视频模块
+
+在编辑文章时，除了以html的方式添加视频外，还可以用一下方式添加：
+
+1、[video]秒拍网页端(http://www.miaopai.com/miaopai/plaza)中的视频ID[/video]
+
+第一步：视频ID查找方法在秒拍网页端点击每个秒拍号头像；
+
+第二步：打开单独秒拍号网页后，右键查看网页源代码，搜索https://www.miaopai.com/show/字符串，它和.htm之间的内容就是视频ID了；
+
+第三步：最后将视频ID添加在[video]视频ID[/video]之中即可。
+
+2、[video]mp4视频地址[/video]
+
+3、[iframe]优酷视频地址[/iframe]
 
 # 关于使用
  - 将本主题里的所有文件放在您网站目录的content/templates内，注意文件夹名字必须为miaopai。
