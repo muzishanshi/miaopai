@@ -124,6 +124,7 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 			<ul class="am-tabs-nav am-nav am-nav-tabs">
 			  <li class="am-active"><a href="#tab-basic">基础设置</a></li>
 			  <li><a href="#tab-login">登陆设置</a></li>
+			  <li><a href="#tab-video">视频模块</a></li>
 			  <li><a href="#tab-about">关于主题</a></li>
 			</ul>
 
@@ -335,6 +336,20 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 				  <label for="config_qq_callback">QQ互联qq_callback</label>
 				  <input type="text" class="" name="config_qq_callback" value="<?=BLOG_URL;?>?oauth&action=qqcallback" id="config_qq_callback" placeholder="" readOnly>
 				  <p class="am-form-help">填写在QQ互联配置的qq_callback</p>
+				</div>
+			  </div>
+			  
+			  <div class="am-tab-panel am-fade" id="tab-video">
+				<div class="am-form-group">
+<pre>
+在编辑文章时，除了以html的方式添加视频外，还可以用一下方式添加：
+1、[video]秒拍网页端(http://www.miaopai.com/miaopai/plaza)中的视频ID[/video]
+	第一步：视频ID查找方法在秒拍网页端点击每个秒拍号头像；
+	第二步：打开单独秒拍号网页后，右键查看网页源代码，搜索https://www.miaopai.com/show/字符串，它和.htm之间的内容就是视频ID了；
+	第三步：最后将视频ID添加在[video]视频ID[/video]之中即可。
+2、[video]mp4视频地址[/video]
+3、[iframe]优酷视频地址[/iframe]
+</pre>
 				</div>
 			  </div>
 			  
