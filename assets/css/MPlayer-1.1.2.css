@@ -1,0 +1,710 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+.MIAOPAI_player * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    background: #FFF;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    font-size: 0
+}
+
+.clearfix {
+    zoom: 1
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    background-color: #000;
+    cursor: pointer;
+}
+
+body {
+    -moz-user-select: none;
+    /*火狐*/
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -ms-user-select: none;
+    /*IE10*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "\9ED1\4F53", Arial, sans-serif;
+}
+
+.MIAOPAI_player .video-player {
+    position: relative;
+}
+
+.MIAOPAI_player .video {
+    position: relative;
+}
+
+.MIAOPAI_player .controls {
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 37px;
+    background-color: #000;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.MIAOPAI_player .progress-bar {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 3px;
+    top: -3px;
+    padding: 0 8px 0 4px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.MIAOPAI_player .progress-bar.on {
+    height: 5px;
+    top: -5px;
+}
+
+.MIAOPAI_player .progress-bar.on .progress-handler {
+    visibility: visible;
+}
+
+.MIAOPAI_player .progress-bar.on .progress-handler b {
+    width: 13px;
+    height: 13px;
+    left: -4px;
+    top: -4px;
+    background-size: 13px 13px;
+}
+
+.MIAOPAI_player .progress-preload {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.MIAOPAI_player .progress-play {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-color: rgba(255, 214, 0, 1);
+}
+
+.MIAOPAI_player .progress-handler {
+    position: relative;
+    width: 5px;
+    height: 5px;
+    margin-left: 0;
+    visibility: hidden;
+}
+
+.MIAOPAI_player .progress-handler b {
+    width: 0;
+    height: 0;
+    left: 2.5px;
+    top: 2.5px;
+    position: absolute;
+    background: url(../img/bar.png) no-repeat;
+    background-size: 0 0;
+    -webkit-transition: all 50ms ease;
+    -moz-transition: all 50ms ease;
+    -ms-transition: all 50ms ease;
+    -o-transition: all 50ms ease;
+    transition: all 50ms ease;
+}
+
+.MIAOPAI_player .controls-bar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.MIAOPAI_player .controls.hidden {
+    bottom: -37px;
+}
+
+.MIAOPAI_player .play {
+    width: 13px;
+    height: 16px;
+    border: none;
+    top: 10px;
+    left: 30px;
+    position: absolute;
+    background: url(../img/play.png) no-repeat;
+    background-size: 13px 16px;
+    cursor: pointer;
+    outline-style: none;
+}
+
+.MIAOPAI_player .pause {
+    background: url(../img/pause.png) no-repeat;
+    background-size: 13px 16px;
+}
+
+.MIAOPAI_player .down .logo-img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.MIAOPAI_player .logo {
+    position: absolute;
+    margin: auto;
+    width: 288px;
+    left: 0;
+    right: 0;
+    top: 8px;
+}
+
+.MIAOPAI_player .logo b {
+    font-size: 13px;
+    color: #FFD600;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+
+.MIAOPAI_player .logo a {
+    text-decoration: none;
+}
+
+.MIAOPAI_player .play-cover {
+    width: 60px;
+    height: 60px;
+    background: url(../img/play_cover.png) no-repeat;
+    background-size: 60px 60px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 7;
+    cursor: pointer;
+    display: none;
+    padding-top: 20px;
+}
+
+.MIAOPAI_player .play-cover.show {
+    display: block;
+}
+
+.MIAOPAI_player .down {
+    width: 8px !important;
+    vertical-align: middle;
+}
+
+.MIAOPAI_player .time {
+    padding: 5px 7px;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 2px;
+    font-size: 13px;
+    color: #fff;
+    position: absolute;
+    top: -34px;
+    right: 5px;
+}
+
+.MIAOPAI_player .volume {
+    width: 17px;
+    position: absolute;
+    right: 70px;
+    bottom: 26px;
+    cursor: pointer;
+}
+
+.MIAOPAI_player .volume-icon {
+    width: 17px;
+    height: 15px;
+    background: url(../img/volume_open.png) no-repeat;
+    background-size: 17px 15px;
+    position: absolute;
+}
+
+.MIAOPAI_player .volume-close {
+    background: url(../img/volume_close.png) no-repeat;
+    background-size: 15px 15px;
+}
+
+.MIAOPAI_player .fullscreen {
+    position: absolute;
+    right: 30px;
+    top: 11px;
+    width: 16px;
+    height: 16px;
+    background: url(../img/full.png);
+    background-repeat: no-repeat;
+    ;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+.MIAOPAI_player .fullscreen-ori {
+    background: url(../img/full_ori.png) no-repeat;
+    background-size: 16px 16px;
+}
+
+.MIAOPAI_player .volume-wrap {
+    position: relative;
+    width: 31px;
+    height: 90px;
+    background: rgba(0, 0, 0, .7);
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    display: none;
+    margin-bottom: 6px;
+    margin-left: -10px;
+}
+
+.MIAOPAI_player .volume-wrap.show {
+    display: block;
+}
+
+.MIAOPAI_player .v-rise {
+    width: 9px;
+    height: 9px;
+    background: url(../img/v_rise.png) no-repeat;
+    background-size: 9px 9px;
+    position: absolute;
+    top: 8px;
+    left: 11px;
+    cursor: pointer;
+}
+
+.MIAOPAI_player .v-reduce {
+    width: 9px;
+    height: 2px;
+    background: url(../img/v_reduce.png) no-repeat;
+    background-size: 9px 2px;
+    position: absolute;
+    bottom: 8px;
+    left: 11px;
+    cursor: pointer;
+}
+
+.MIAOPAI_player .volume-level-bar {
+    width: 1px;
+    height: 46px;
+    background: rgba(255, 255, 255, .5);
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    cursor: pointer;
+}
+
+.MIAOPAI_player .volume-level {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 0%;
+    background: rgba(255, 214, 0, 100);
+}
+
+.MIAOPAI_player .volume-handler {
+    position: absolute;
+    bottom: 0%;
+    width: 1px;
+    height: 1px;
+    left: 0;
+}
+
+.MIAOPAI_player .volume-handler b {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: -3px;
+    top: -3px;
+    background: url(../img/v_handler.png) no-repeat;
+    background-size: 7px 7px;
+}
+
+.MIAOPAI_player .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 2;
+    /*display: none;*/
+}
+
+.MIAOPAI_player .loading-logo {
+    background: url(../img/loading_logo.png) no-repeat;
+    background-size: 230px 86px;
+    position: absolute;
+    width: 230px;
+    height: 86px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    padding-top: 30px;
+}
+
+.MIAOPAI_player .recommend {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+    display: none;
+    z-index: 8;
+}
+
+.MIAOPAI_player .recommend.show {
+    display: block;
+}
+
+.MIAOPAI_player .hot {
+    z-index: 999;
+    height: 197px;
+    position: absolute;
+    width: 386px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.MIAOPAI_player .hot h2 {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 13px;
+    margin-left: -6px;
+}
+
+.MIAOPAI_player .main {
+    width: 385px;
+    height: 169px;
+    position: absolute;
+    padding-top: 70px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.MIAOPAI_player .main .recommend_video {
+    position: absolute;
+    top: 26px;
+    height: 182px;
+}
+
+.MIAOPAI_player .left {
+    width: 152px;
+}
+
+.MIAOPAI_player .left .pic {
+    width: 152px;
+    height: 152px;
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    background-position: center;
+    background-size: cover;
+}
+
+.MIAOPAI_player .left .pic a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.MIAOPAI_player .recommend_video .left img {
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.MIAOPAI_player .right {
+    position: absolute;
+    top: 0;
+    left: 167px;
+    float: right;
+    width: 108px;
+}
+
+.MIAOPAI_player .right .pic {
+    width: 108px;
+    height: 60px;
+    position: relative;
+    display: block;
+    background-size: cover;
+    background-position: center;
+}
+
+.MIAOPAI_player .right .pic a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.MIAOPAI_player .right .pic img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.MIAOPAI_player .left p,
+.right p {
+    color: #fff;
+    font-size: 12px;
+    padding-top: 6px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.MIAOPAI_player .right .right_r2 {
+    margin-top: 14px;
+}
+
+.MIAOPAI_player .pic img {
+    background-size: cover;
+    width: auto !important;
+}
+
+.MIAOPAI_player .share {
+    width: 68px;
+    position: absolute;
+    right: 0;
+    border: none;
+}
+
+.MIAOPAI_player .share img {
+    width: 30px !important;
+    vertical-align: middle;
+}
+
+.MIAOPAI_player .share b {
+    color: #fff;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.MIAOPAI_player .share_btn,
+.replay_btn {
+    cursor: pointer;
+}
+
+.MIAOPAI_player .replay_btn {
+    margin-top: 19px;
+}
+
+.MIAOPAI_player .share_icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+    z-index: 999;
+    text-align: center;
+    display: none;
+}
+
+.MIAOPAI_player .share_icon a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.MIAOPAI_player .share_icon ol {
+    width: 350px;
+    height: 75px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.MIAOPAI_player .share_icon ol li {
+    width: 70px;
+    font-size: 12px;
+    float: left;
+}
+
+.MIAOPAI_player .share_icon ol li img {
+    width: 48px;
+    height: 48px;
+}
+
+.MIAOPAI_player .share_icon ol li b {
+    display: block;
+    padding-top: 10px;
+}
