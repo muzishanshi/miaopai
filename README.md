@@ -74,6 +74,10 @@ http://m.renrendian.com/buyer/home?vid=14420124
 https://me.tongleer.com/?theme=miaopai
 
 # 版本记录
+2019-03-22
+
+	V1.0.2	修复了因cdn.bootcss.com中JS静态资源不可访问导致的js失效的问题。
+	
 2019-03-10 V1.0.1：
 
 	第一个版本降世

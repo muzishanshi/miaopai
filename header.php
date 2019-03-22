@@ -2,12 +2,12 @@
 /*
 Template Name:秒拍模板<br /><a href="../?setting" target="_blank">模板设置</a>&nbsp;<a href="https://github.com/muzishanshi/miaopai" target="_blank">作者Github</a>&nbsp;<a href="https://www.tongleer.com/api/web/pay.png" target="_blank">打赏</a>&nbsp;
 Description:一个仿秒拍的模板
-Version:1.0.1
+Version:1.0.2
 Author:二呆
 Author Url:http://www.tongleer.com
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-define('INKER_VERSION', '1');
+define('INKER_VERSION', '2');
 require_once View::getView('module');
 require_once(dirname(__FILE__).'/config.php');
 ?>
