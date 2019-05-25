@@ -12,7 +12,7 @@ if($action=='emaillogin'){
 	$ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	if (LoginAuth::checkUser($username, $password, $img_code)===true) {
+	if (LoginAuth::checkUser($username, $password, $img_code)) {
 		LoginAuth::setAuthCookie($username, $ispersis);
 		$json=json_encode(array("code"=>"success","msg"=>"登陆成功"));
 	} else{
