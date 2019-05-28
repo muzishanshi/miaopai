@@ -3,7 +3,7 @@
  * 侧边栏组件、页面模块
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
-$db = MySql::getInstance();
+$db = Database::getInstance();
 ?>
 <?php
 //widget：blogger
@@ -583,7 +583,7 @@ function page_repeat($page) {
 <?php
 //点赞
 function syzan(){
-	$DB = MySql::getInstance();
+	$DB = Database::getInstance();
 	if($DB->num_rows($DB->query("show columns from ".DB_PREFIX."blog like 'slzan'")) == 0){
 		$sql = "ALTER TABLE ".DB_PREFIX."blog ADD slzan int unsigned NOT NULL DEFAULT '0'";
 		$DB->query($sql);
@@ -641,7 +641,7 @@ function displayRecordItem($record){
 	return $result;
 }
 function archiver_db($condition = ''){
-	$DB = MySql::getInstance();
+	$DB = Database::getInstance();
 	$sql = "SELECT gid, title, date, views FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition";
 	$result = $DB->query($sql);
 	$output = '';

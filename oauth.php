@@ -5,7 +5,7 @@ if(!class_exists('SaeTOAuthV2')){
 	include_once('libs/saetv2.ex.class.php' );
 }
 date_default_timezone_set('Asia/Shanghai');
-$db = MySql::getInstance();
+$db = Database::getInstance();
 global $CACHE;
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';

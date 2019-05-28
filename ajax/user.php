@@ -4,7 +4,7 @@ require_once '../../../../init.php';
 require_once(dirname(__FILE__).'/../config.php');
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 date_default_timezone_set("Etc/GMT-8");
-$db = MySql::getInstance();
+$db = Database::getInstance();
 $action = isset($_POST['action']) ? addslashes($_POST['action']) : '';
 if($action=='emaillogin'){
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
