@@ -1,13 +1,12 @@
 <?php
 /*
-Template Name:秒拍模板<br /><a href="../?setting" target="_blank">模板设置</a>&nbsp;<a href="https://github.com/muzishanshi/miaopai" target="_blank">作者Github</a>&nbsp;<a href="https://www.tongleer.com/api/web/pay.png" target="_blank">打赏</a>&nbsp;
-Description:一个仿秒拍的模板
-Version:1.0.2
+Template Name:秒拍模板<br /><a href="../?setting" target="_blank">设置</a>&nbsp;<a href="http://club.tongleer.com" target="_blank">论坛</a>&nbsp;<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=diamond0422@qq.com" target="_blank">反馈</a>&nbsp;
+Description:一个仿秒拍的模板<a href="https://www.tongleer.com/api/web/pay.png" target="_blank"><font color="red" title="插件因兴趣于闲暇时间所写，故会有代码不规范、不专业和bug的情况，但完美主义促使代码还说得过去，如有bug或使用问题进行反馈即可。">打赏</font></a>
+Version:1.0.3<span id="miaopaiUpdateInfo"></span><script>miaopaiXmlHttp=new XMLHttpRequest();miaopaiXmlHttp.open("GET","https://www.tongleer.com/api/interface/miaopai.php?action=update&version=3",true);miaopaiXmlHttp.send(null);miaopaiXmlHttp.onreadystatechange=function () {if (miaopaiXmlHttp.readyState ==4 && miaopaiXmlHttp.status ==200){document.getElementById("miaopaiUpdateInfo").innerHTML=miaopaiXmlHttp.responseText;}}</script>
 Author:二呆
 Author Url:http://www.tongleer.com
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-define('INKER_VERSION', '2');
 require_once View::getView('module');
 require_once(dirname(__FILE__).'/config.php');
 ?>

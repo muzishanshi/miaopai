@@ -54,10 +54,11 @@ if($action=='emaillogin'){
 	for ( $i = 0; $i < 5; $i++ ){
 		$randCode .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
 	}
-	$_SESSION['smscode'] = strtoupper($randCode);
+	$_SESSION['mailsmscode'] = strtoupper($randCode);
 	
-	$result=sendMailSms($config_mailsmtp,$config_mailport,$config_mailuser,$config_mailpass,$username,'【'.Option::get('blogname').'】验证码：'.$_SESSION['smscode'],'欢迎使用'.Option::get('blogname').'验证码服务，您的验证码是：'.$_SESSION['smscode']);
+	$result=sendMailSms($config_mailsmtp,$config_mailport,$config_mailuser,$config_mailpass,$config_mailsecure,$username,'【'.Option::get('blogname').'】验证码：'.$_SESSION['mailsmscode'],'欢迎使用'.Option::get('blogname').'验证码服务，您的验证码是：'.$_SESSION['mailsmscode']);
 	if($result){
+		$_SESSION['newmail'] = $username;
 		$json=json_encode(array("code"=>"ok","msg"=>"发送邮件验证码成功"));
 		echo $json;
 	}else{
@@ -74,8 +75,13 @@ if($action=='emaillogin'){
 		echo $json;
 		exit;
 	}
-	if(strcasecmp($_SESSION['smscode'],$smscode)!=0){
+	if(strcasecmp($_SESSION['mailsmscode'],$smscode)!=0){
 		$json=json_encode(array("code"=>"mailcodeerror","msg"=>"邮件验证码错误"));
+		echo $json;
+		exit;
+	}
+	if (isset($_SESSION["newmail"])&&$username!=$_SESSION["newmail"]) {
+		$json=json_encode(array("code"=>"mailnosame","msg"=>"填写邮箱和发送验证码的邮箱不一致"));
 		echo $json;
 		exit;
 	}
@@ -105,7 +111,7 @@ if($action=='emaillogin'){
 	for ( $i = 0; $i < 5; $i++ ){
 		$randCode .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
 	}
-	$_SESSION['smscode'] = strtoupper($randCode);
+	$_SESSION['mailsmscode'] = strtoupper($randCode);
 	
 	$json=json_encode(array("code"=>"ok","msg"=>"注册成功"));
 	echo $json;
@@ -126,7 +132,6 @@ if($action=='emaillogin'){
 	echo $json;
 	exit;
 }
-
 /*创建第三方登录缩短所用数据表*/
 function createTableOAuthLogin($db){
 	$db->query('CREATE TABLE IF NOT EXISTS '.DB_PREFIX.'tle_emlog_oauthlogin(
@@ -140,21 +145,27 @@ function createTableOAuthLogin($db){
 	) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci');
 }
 /*发送邮件*/
-function sendMailSms($mailsmtp,$mailport,$mailuser,$mailpass,$email,$title,$content){
-	require __DIR__ . '/../libs/email.class.php';
-	$smtpserverport =$mailport;//SMTP服务器端口//企业QQ:465、126:25
-	$smtpserver = $mailsmtp;//SMTP服务器//QQ:ssl://smtp.qq.com、126:smtp.126.com
-	$smtpusermail = $mailuser;//SMTP服务器的用户邮箱
-	$smtpemailto = $email;//发送给谁
-	$smtpuser = $mailuser;//SMTP服务器的用户帐号
-	$smtppass = $mailpass;//SMTP服务器的用户密码
-	$mailtitle = $title;//邮件主题
-	$mailcontent = $content;//邮件内容
-	$mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
-	//************************ 配置信息 ****************************
-	$smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
-	$smtp->debug = false;//是否显示发送的调试信息
-	$state = $smtp->sendmail($smtpemailto, $smtpusermail, $mailtitle, $mailcontent, $mailtype);
-	return $state;
+function sendMailSms($mailsmtp,$mailport,$mailuser,$mailpass,$mailsecure,$email,$title,$content){
+	require_once dirname(__FILE__).'/../libs/PHPMailer/PHPMailerAutoload.php';
+	$phpMailer = new PHPMailer();
+	$phpMailer->isSMTP();
+	$phpMailer->SMTPAuth = true;
+	$phpMailer->Host = $mailsmtp;
+	$phpMailer->Port = $mailport;
+	$phpMailer->Username = $mailuser;
+	$phpMailer->Password = $mailpass;
+	$phpMailer->isHTML(true);
+	if ('none' != $mailsecure) {
+		$phpMailer->SMTPSecure = $mailsecure;
+	}
+	$phpMailer->setFrom($mailuser, $title);
+	$phpMailer->addAddress($email, $email);
+	$phpMailer->Subject = $title;
+	$phpMailer->Body    = $content;
+	if(!$phpMailer->send()) {
+		return false;
+	} else {
+		return true;
+	}
 }
 ?>

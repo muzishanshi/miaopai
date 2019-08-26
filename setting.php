@@ -12,10 +12,11 @@ if (ROLE == ROLE_ADMIN){
 		$config_is_pjax = @isset($_POST['config_is_pjax']) ? addslashes(trim(str_replace("'","\'",$_POST['config_is_pjax']))) : 'n';
 		
 		$config_is_mailreg = @isset($_POST['config_is_mailreg']) ? addslashes(trim(str_replace("'","\'",$_POST['config_is_mailreg']))) : 'n';
-		$config_mailsmtp = @isset($_POST['config_mailsmtp']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailsmtp']))) : 'ssl://smtp.exmail.qq.com';
+		$config_mailsmtp = @isset($_POST['config_mailsmtp']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailsmtp']))) : 'smtp.exmail.qq.com';
 		$config_mailport = @isset($_POST['config_mailport']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailport']))) : '465';
 		$config_mailuser = @isset($_POST['config_mailuser']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailuser']))) : '';
 		$config_mailpass = @isset($_POST['config_mailpass']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailpass']))) : '';
+		$config_mailsecure = @isset($_POST['config_mailsecure']) ? addslashes(trim(str_replace("'","\'",$_POST['config_mailsecure']))) : '';
 		
 		$config_is_weibologin = @isset($_POST['config_is_weibologin']) ? addslashes(trim(str_replace("'","\'",$_POST['config_is_weibologin']))) : 'n';
 		$config_wb_akey = @isset($_POST['config_wb_akey']) ? addslashes(trim(str_replace("'","\'",$_POST['config_wb_akey']))) : '';
@@ -62,6 +63,7 @@ if (ROLE == ROLE_ADMIN){
 				 \$config_mailport = '".$config_mailport."';
 				 \$config_mailuser = '".$config_mailuser."';
 				 \$config_mailpass = '".$config_mailpass."';
+				 \$config_mailsecure = '".$config_mailsecure."';
 				 \$config_favicon = '".$config_favicon."';
 				 \$config_logo = '".$config_logo."';
 		         \$config_headImgUrl = '".$config_headImgUrl."';
@@ -101,10 +103,6 @@ if (ROLE == ROLE_ADMIN){
 <script>
 $(".header").css("display","none");
 $("title").html("<?=Option::get('blogname');?>主题设置");
-$.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VERSION;?>"},function(data){
-	var data=JSON.parse(data);
-	$("#versionCode").html(data.message);
-});
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.2/css/amazeui.min.css"/>
 <!--[if lte IE 9]>
@@ -131,10 +129,6 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 			<div class="am-tabs-bd">
 			  <div class="am-tab-panel am-fade am-in am-active" id="tab-basic">
 				
-				<div class="am-form-group">
-				  <label for="config_admin_dir">版本检测</label>
-				  <p class="am-form-help" id="versionCode"></p>
-				</div>
 				<div class="am-form-group">
 				  <label for="config_admin_dir">后台管理员文件夹名称</label>
 				  <input type="text" class="" name="config_admin_dir" id="config_admin_dir" value="<?=$config_admin_dir;?>" placeholder="">
@@ -263,8 +257,8 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 				</div>
 				<div class="am-form-group">
 				  <label for="config_mailsmtp">smtp服务器(已验证QQ企业邮箱和126邮箱可成功发送)</label>
-				  <input type="text" class="" name="config_mailsmtp" value="<?=$config_mailsmtp?$config_mailsmtp:"ssl://smtp.exmail.qq.com";?>" id="config_mailsmtp" placeholder="">
-				  <p class="am-form-help">用于邮箱注册发送邮箱验证码及其他邮件服务的smtp服务器地址，QQ企业邮箱：ssl://smtp.exmail.qq.com:465；126邮箱：smtp.126.com:25</p>
+				  <input type="text" class="" name="config_mailsmtp" value="<?=$config_mailsmtp?$config_mailsmtp:"smtp.exmail.qq.com";?>" id="config_mailsmtp" placeholder="">
+				  <p class="am-form-help">用于邮箱注册发送邮箱验证码及其他邮件服务的smtp服务器地址，QQ企业邮箱：smtp.exmail.qq.com:465；QQ个人邮箱：smtp.qq.com:465/25；126邮箱：smtp.126.com:465/25</p>
 				</div>
 				<div class="am-form-group">
 				  <label for="config_mailport">smtp服务器端口</label>
@@ -278,8 +272,17 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 				</div>
 				<div class="am-form-group">
 				  <label for="config_mailpass">smtp服务器邮箱密码</label>
-				  <input type="text" class="" name="config_mailpass" value="<?=$config_mailpass;?>" id="config_mailpass" placeholder="">
+				  <input type="password" class="" name="config_mailpass" value="<?=$config_mailpass;?>" id="config_mailpass" placeholder="">
 				  <p class="am-form-help">用于邮箱注册发送邮箱验证码及其他邮件服务的smtp服务器邮箱密码</p>
+				</div>
+				<div class="am-form-group">
+				  <label for="config_mailsecure">smtp服务器安全协议</label>
+				  <select name="config_mailsecure">
+					<option value="ssl" <?if($config_mailsecure=="ssl"){echo "selected";}?>>SSL</option>
+					<option value="tls" <?if($config_mailsecure=="tls"){echo "selected";}?>>TLS</option>
+					<option value="none" <?if($config_mailsecure=="none"){echo "selected";}?>>无</option>
+				  </select>
+				  <span class="am-form-caret"></span>
 				</div>
 				
 				<div class="am-form-group">
@@ -301,7 +304,7 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 				</div>
 				<div class="am-form-group">
 				  <label for="config_wb_skey">微博开放平台App Secret</label>
-				  <input type="text" class="" name="config_wb_skey" value="<?=$config_wb_skey?>" id="config_wb_skey" placeholder="">
+				  <input type="password" class="" name="config_wb_skey" value="<?=$config_wb_skey?>" id="config_wb_skey" placeholder="">
 				  <p class="am-form-help">填写在微博开放平台申请的App Secret</p>
 				</div>
 				<div class="am-form-group">
@@ -329,7 +332,7 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 				</div>
 				<div class="am-form-group">
 				  <label for="config_qq_appkey">QQ互联qq_appkey</label>
-				  <input type="text" class="" name="config_qq_appkey" value="<?=$config_qq_appkey?>" id="config_qq_appkey" placeholder="">
+				  <input type="password" class="" name="config_qq_appkey" value="<?=$config_qq_appkey?>" id="config_qq_appkey" placeholder="">
 				  <p class="am-form-help">填写在QQ互联申请的qq_appkey</p>
 				</div>
 				<div class="am-form-group">
@@ -365,7 +368,7 @@ $.post("<?=TEMPLATE_URL;?>ajax/update.php",{action:"update",version:"<?=INKER_VE
 email：diamond0422@qq.com
 博客：http://www.tongleer.com/
 微信公众号：Diamond0422
-<img src="https://ws3.sinaimg.cn/large/005V7SQ5ly1g0vcv2g89yj305k05k3yu.jpg" width="100" alt="" />
+<img src="https://ae01.alicdn.com/kf/Hbaed30027ad445af9762b6ac06c0f2f2u.jpg" width="100" alt="" />
 </pre>
 				</div>
 			  </div>

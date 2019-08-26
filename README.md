@@ -63,7 +63,7 @@ http://m.renrendian.com/buyer/home?vid=14420124
 
  - 本主题限个人使用，公开发布请注明原作者：二呆，及链接：http://www.tongleer.com
 
- - 如果你喜欢这个主题，别忘记给我打赏哦：http://api.tongleer.com/web/pay.php
+ - 如果你喜欢这个主题，别忘记给我打赏哦：https://www.tongleer.com/api/web/pay.png
  
  - 如果遇到bug或者使用问题，欢迎给我来email：diamond@tongleer.com
  
@@ -74,6 +74,10 @@ http://m.renrendian.com/buyer/home?vid=14420124
 https://me.tongleer.com/?theme=miaopai
 
 # 版本记录
+2019-08-26 V1.0.3
+
+	优化通用的发送邮件方式支持emlog_6.1.1，修复了发送验证码后修改邮箱可以注册的bug。
+	
 2019-03-22
 
 	V1.0.2	修复了因cdn.bootcss.com中JS静态资源不可访问导致的js失效的问题。
