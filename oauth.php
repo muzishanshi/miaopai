@@ -142,7 +142,7 @@ if($action=='weibocallback'){
 			$db->query("insert into ".DB_PREFIX."user (username,nickname,password,email,role,ischeck) values('$nickname','$nickname','$password','$email','writer','y')");
 			$userId = $db->insert_id();
 			
-			$db->query("insert into ".DB_PREFIX."tle_emlog_oauthlogin (oauthid,oauthuid,oauthnickname,oauthfigureurl,oauthgender,oauthtype) values('$oauthid','$userId','$nickname','$figureurl','$gender','weibo')");
+			$db->query("insert into ".DB_PREFIX."tle_emlog_oauthlogin (oauthid,oauthuid,oauthnickname,oauthfigureurl,oauthgender,oauthtype) values('$oauthid','$userId','$nickname','$figureurl','$gender','qq')");
 
 			$CACHE->updateCache();
 			LoginAuth::setAuthCookie($nickname);
