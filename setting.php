@@ -104,7 +104,7 @@ if (ROLE == ROLE_ADMIN){
 $(".header").css("display","none");
 $("title").html("<?=Option::get('blogname');?>主题设置");
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.2/css/amazeui.min.css"/>
+<link rel="stylesheet" href="https://www.tongleer.com/cdn/amazeui/css/amazeui.min.css"/>
 <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
@@ -392,9 +392,9 @@ email：diamond0422@qq.com
 </section>
 <!--[if lt IE 9]>
 <script src="https://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+<script src="https://www.tongleer.com/cdn/amazeui/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/amazeui/2.7.2/js/amazeui.min.js" type="text/javascript"></script>
+<script src="https://www.tongleer.com/cdn/amazeui/js/amazeui.min.js" type="text/javascript"></script>
 </body>
 </html>
 	<?php

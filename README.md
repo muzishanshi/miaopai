@@ -74,6 +74,10 @@ http://m.renrendian.com/buyer/home?vid=14420124
 https://me.tongleer.com/?theme=miaopai
 
 # 版本记录
+2019-10-02 V1.0.4
+
+	修复因加载cloudflare的layer.js失效导致的bug。
+	
 2019-08-26 V1.0.3
 
 	优化通用的发送邮件方式支持emlog_6.1.1，修复了发送验证码后修改邮箱可以注册的bug。
